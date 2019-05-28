@@ -8,3 +8,7 @@ INSERT INTO contacts.person (firstName, lastName, dateOfBirth) VALUES ('First4',
 
 -- No dateOfBirth
 INSERT INTO contacts.person (firstName, lastName) VALUES ('FirstNoDOB', 'LastNoDOB');
+
+INSERT INTO contacts.emailaddr (person_id, emailAddr) VALUES (1, 'p1_email1.com');
+INSERT INTO contacts.emailaddr (person_id, emailAddr) VALUES (1, 'p1_email2.com');
+INSERT INTO contacts.emailaddr (person_id, emailAddr) VALUES (2, 'p2_email1.com');
