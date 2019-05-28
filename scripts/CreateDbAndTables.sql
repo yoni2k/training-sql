@@ -6,6 +6,7 @@ CREATE TABLE person
 (	id INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	firstName VARCHAR(55) NOT NULL,
     lastName VARCHAR(55) NOT NULL,
+    studentId INTEGER,
     dateOfBirth DATE
 );
 CREATE TABLE emailAddr 
