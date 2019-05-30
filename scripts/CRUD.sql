@@ -207,3 +207,61 @@ UPDATE contacts.person p
 -- DELETE FROM
 DELETE FROM contacts.person
 	WHERE firstName = 'F11';
+    
+/**********************************************************************
+ PART 4: A bit more advances, from Hackerrank exercises */
+ 
+-- Modulus [get all even ids]
+SELECT  *
+FROM 	contacts.person p
+WHERE 	(p.id % 2 = 0);
+-- ANOTHER WAY
+SELECT  *
+FROM 	contacts.person p
+WHERE 	(MOD(p.id,2) = 0);
+
+-- Using Math on COUNT or SELECT statements in general [question: give number of duplicates]
+SELECT  COUNT(p.firstName) - COUNT(DISTINCT p.firstName)
+FROM 	contacts.person p;
+
+-- Using LENGTH
+SELECT 	p.firstName
+FROM 	contacts.person p
+ORDER BY LENGTH(p.firstName);
+
+INSERT INTO contacts.person (firstName, lastName) VALUES 
+		('123456789_','L10'),
+        ('a','L1');
+
+-- Using UNION, Using both ORDER BY with multiple values 
+-- [Question: get name and length of shortest and longest city.  If more than 1, return 1st alphabetically]
+(SELECT p.firstName, LENGTH(p.firstName)
+FROM contacts.person p
+ORDER BY LENGTH(p.firstName), p.firstName 
+LIMIT 1)
+UNION
+(SELECT p.firstName, LENGTH(p.firstName)
+FROM contacts.person p
+ORDER BY LENGTH(p.firstName) DESC, p.firstName
+LIMIT 1);
+
+-- Using LEFT - first X characters
+-- [Question: all distinct first names starting with 'F' or '1'
+SELECT DISTINCT p.firstName
+FROM contacts.person p
+WHERE LEFT(p.firstName, 1) IN ('F', '1');
+
+-- IF statement
+SELECT p.firstName, IF(LENGTH(p.firstName) > 5, 'Long','Short') as isNameLong
+FROM contacts.person p;
+
+-- CEIL ceiling, FLOOR round to nearest integer 
+-- [doesn't make sense to do on studentId, just showing how it works]
+SELECT FLOOR(AVG(p.studentId))
+FROM contacts.person p;
+
+-- REPLACE - works not only on strings, but also on integers
+-- [question doesn't make sense, just to show how it works - replace all zeros in studentId regardless how many and where in the number with nothing]
+SELECT FLOOR(AVG(REPLACE(p.studentId,'0','')))
+FROM contacts.person p;
+
